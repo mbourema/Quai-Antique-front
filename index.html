@@ -4,17 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="scss/main.css"/>
 </head>
 <body>
     <header>
-        Le menu
+        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/">Quai Antique</a>
+              <!-- <button> : Crée un bouton HTML. class="navbar-toggler" : Classe Bootstrap utilisée pour styliser le bouton selon le design standard d'un "toggler",
+              par défaut, il affiche une icône de barre (≡) sur les petits écrans. type="button" : Indique que ce bouton est de type "button". Cela empêche un
+              comportement par défaut, comme le rechargement de la page, si ce bouton était dans un formulaire. data-bs-toggle="collapse" : Attribut spécifique à Bootstrap.
+              Indique que ce bouton déclenche un comportement de type "collapse" (affichage/masquage du contenu cible). data-bs-target="#navbarSupportedContent" :
+              Spécifie l'élément HTML cible qui sera affecté par ce bouton. Ici, il cible l'élément avec l'id="navbarSupportedContent" (contenu de la barre de navigation).
+              Lorsqu'on clique sur ce bouton, l'élément #navbarSupportedContent sera affiché ou masqué. aria-controls="navbarSupportedContent" : Attribut ARIA (Accessible Rich Internet Applications).
+              Spécifie que ce bouton contrôle l'affichage du contenu identifié par id="navbarSupportedContent". Aide les lecteurs d'écran à comprendre la relation entre le bouton et l'élément qu'il contrôle.
+              aria-expanded="false" : Attribut ARIA qui indique si la cible est actuellement visible (true) ou masquée (false). Cet attribut est mis à jour automatiquement par Bootstrap en
+              fonction de l'état de la cible. aria-label="Toggle navigation" : Fournit une description textuelle pour les utilisateurs de lecteurs d'écran.
+              Ici, cela indique que ce bouton sert à afficher ou masquer la navigation.-->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <!-- class="navbar-toggler-icon" : Classe spécifique de Bootstrap. Ajoute une icône visuelle standard pour le bouton "toggler" dans une barre de navigation.
+               Par défaut, cette icône ressemble à un "menu hamburger" (≡) composé de trois lignes parallèles.-->  
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <!-- collapse est une classe de Bootstrap utilisée pour permettre un comportement d'affichage/masquage dynamique. Par défaut, le contenu de cet élément est masqué (effondré).
+               Il peut être affiché ou masqué dynamiquement lorsqu'il est lié à un déclencheur comme un bouton. class="navbar-collapse" : Classe de Bootstrap utilisée pour styliser
+              et structurer les éléments de navigation à l'intérieur d'une barre de navigation (<nav>). Assure que les éléments enfants (liens, listes, etc.) sont bien alignés et positionnés.
+              id="navbarSupportedContent": Identifiant unique pour cet élément HTML. Permet de lier ce conteneur à un bouton de contrôle (comme un bouton navbar-toggler) grâce à l'attribut
+              data-bs-target="#navbarSupportedContent". Cet identifiant est essentiel pour que Bootstrap puisse associer les actions (afficher/masquer) avec cet élément.-->
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <!-- class="navbar-nav" : Classe Bootstrap qui transforme la liste (ul ici) en une liste de navigation dans le contexte d'une barre de navigation (navbar).
+               Cette classe applique un style par défaut à la liste d'éléments, de sorte qu'ils s'affichent sous forme de liens horizontalement, avec un espacement approprié.
+               ms-auto : ms signifie margin-start, et c'est une propriété utilitaire Bootstrap pour appliquer une marge à gauche
+              (en fonction de la direction de lecture du texte, généralement de gauche à droite). ms-auto ajoute automatiquement la marge à gauche, ce qui fait en sorte
+              que les éléments de la liste se déplacent vers la droite de l'écran. Cela permet d'aligner les éléments de navigation à droite de la barre de navigation,
+              ce qui est très courant pour les menus de navigation. mb-2 : mb signifie margin-bottom (marge en bas). mb-2 applique une marge de 0.5rem (8px) en bas de l'élément.
+              Cela est souvent utilisé pour espacer l'élément de la liste de ce qui se trouve en dessous. mb-lg-0 : mb-lg-0 applique une marge de 0 (zéro) en bas de l'élément
+              pour les écrans larges (lg) et plus. Cela signifie qu'à partir de la taille d'écran large, les éléments de la liste ne recevront plus de marge en bas, ce qui
+              est utile pour garder l'alignement propre dans les barres de navigation sur les écrans plus grands.-->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Accueil</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/galerie">Galerie</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">La carte</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Les réservations</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Mon compte</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Connexion/Deconnexion</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
     </header>
     <main id="main-page">
         <!-- Le contenu de la page sera injecté ici -->
     </main>
-    <footer>
-        Le footer de mon site
+    <footer class="bg-dark text-white text-center footer">
+        <div class="row">
+          <!--Sur les petits écrans, chaque colonne (col-12) occupe toute la largeur de l'écran (100%).
+          Sur les grands écrans (lg et plus), chaque colonne (col-lg-4) occupe 1/3 de l'écran (33.33%).-->
+            <div class="col-12 col-lg-4">
+                <h3 class="text-primary">Nos horaires</h3>
+                <p>Du mardi au dimanche  12:00-14:00  18:00-23:00</p>
+            </div>
+            <div class="col-6 col-lg-4">
+                <p>Quai Antique <br/>
+                    5 rue de la route <br/>
+                    31150 Ville <br/>
+                    04 01 01 01 01 <br/>
+                </p>
+            </div>
+            <div class="col-6 col-lg-4">
+                <p>test</p>
+            </div>
+        </div>
     </footer>
-    <script type="module" src="\Router\router.js"></script>
+    <script type="module" src="Router/router.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

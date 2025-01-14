@@ -1,0 +1,15 @@
+{
+  "name": "quai-antique-front",
+  "version": "1.0.0",
+  "description": "Ce site est un site vitrine pour lae restaurant Quai Antique",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  }
+}
