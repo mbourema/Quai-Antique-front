@@ -40,6 +40,9 @@ Tous les éléments à l'intérieur de .hero-scene sont positionnés relativemen
         img{
             filter: brightness(0.3);
         }
+        .action-image-buttons{
+            opacity: 1;
+        }
     }
 
     img{
@@ -53,5 +56,25 @@ Tous les éléments à l'intérieur de .hero-scene sont positionnés relativemen
         transform: translate(-50%, -50%);
         opacity: 0;
         transition: all 0.3s;
+    }
+
+    .action-image-buttons{
+        position : absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        opacity: 0;
+        transition: all 0.3s;
+    }
+}
+
+.allreservations{
+    a{
+        display: block;
+        color: $black;
+        padding:10px;
     }
 }
