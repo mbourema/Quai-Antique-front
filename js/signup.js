@@ -6,12 +6,14 @@ const inputMail = document.getElementById("EmailInput");
 const inputPassword = document.getElementById("PasswordInput");
 const inputValidationPassword = document.getElementById("ValidatePasswordInput");
 const btnValidation = document.getElementById("btn-validation-inscription");
+const formInscription = document.getElementById("formulaireInscription");
 
 inputNom.addEventListener("keyup", validateForm); 
 inputPreNom.addEventListener("keyup", validateForm);
 inputMail.addEventListener("keyup", validateForm);
 inputPassword.addEventListener("keyup", validateForm);
 inputValidationPassword.addEventListener("keyup", validateForm);
+btnValidation.addEventListener("click", InscrireUtilisateur);
 
 //Function permettant de valider tout le formulaire
 function validateForm(){
@@ -88,4 +90,46 @@ function validateConfirmationPassword(inputPwd, inputConfirmPwd){
         inputConfirmPwd.classList.remove("is-valid");
         return false;
     }
+}
+
+function InscrireUtilisateur() {
+    let dataForm = new FormData(formInscription);
+    let name = dataForm.get("Nom");
+    let prenom = dataForm.get("Prenom");
+    let email = dataForm.get("Email");
+    let mdp = dataForm.get("Password");
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let raw = JSON.stringify({
+        "firstName": prenom,
+        "lastName": name,
+        "email": email,
+        "password": mdp
+    });
+
+    let requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    fetch(apiUrl+"registration", requestOptions)
+    .then(response => {
+        if(response.ok){
+            return response.json();
+        }
+        else{
+            alert("Erreur lors de l'inscription");
+        }
+    })
+    .then(result => {
+        alert("Bravo "+prenom+" , vous êtes maintenant inscrit, vous pouvez vous connecter.");
+        document.location.href="/connexion";
+    })
+    .catch(error => {
+        alert('Linscription a échouée');
+        console.log('error', error);
+    })
 }

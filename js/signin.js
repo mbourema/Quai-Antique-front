@@ -1,28 +1,47 @@
 const mailInput = document.getElementById("EmailInput");
 const passwordInput = document.getElementById("PasswordInput");
 const btnSignin = document.getElementById("btnSignin");
+const formConnexion = document.getElementById("fomulaireConnexion");
 
 
 btnSignin.addEventListener("click", checkCredentials);
 
 // Fonction pour gérer la connexion pour la page de connexion
 function checkCredentials(){
-    //Ici, il faudra appeler l'API pour vérifier les credentials en BDD
-    //Si la valeur du champ e-mail est 'test@mail.com' et que la valeur du champ mot de passe est '123'
-    if(mailInput.value == "test@mail.com" && passwordInput.value == "123"){
-        //Il faudra récupérer le vrai token
-        const token = "lkjsdngfljsqdnglkjsdbglkjqskjgkfjgbqslkfdgbskldfgdfgsdgf";
-        /* Un cookie est créé avec le nom "accesstoken" et la valeur de la constante token et 
-        une durée d'expiration de 7 jours (en utilisant la fonction setCookie) */
+    //On récupère les données du formulaire de connexion
+    let dataForm = new FormData(formConnexion);
+    //On défini le header
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    //On récupère les données des champs du formulaire dans un fichier JSON
+    let raw = JSON.stringify({
+        "username": dataForm.get("Email"),
+        "password": dataForm.get("Password")
+    });
+    //On met les options de la requête dans un objet
+    let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+    fetch(apiUrl+"login", requestOptions)
+    .then(response => {
+        if(response.ok){
+            return response.json();
+        }
+        else{
+            mailInput.classList.add("is-invalid");
+            passwordInput.classList.add("is-invalid");
+        }
+    })
+    .then(result => {
+        const token = result.apiToken;
         setToken(token);
-        //L'utilisateur est redirifé dans la page d'accueil
+        //placer ce token en cookie
+
+        setCookie(roleCookieName, result.roles[0], 7);
         window.location.replace("/");
-        //Un cookie avec le role d'administrateur est créé pour 7 jours
-        setCookie(roleCookieName, "admin", 7);
-    }
-    else{
-        //Sinon les champs du formulaire de connexion s'entourent de rouge
-        mailInput.classList.add("is-invalid");
-        passwordInput.classList.add("is-invalid");
-    }
+    })
+    .catch(error => console.log('error', error));   
 }
