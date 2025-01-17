@@ -32,10 +32,7 @@ jobs:
           # Ignore time when deciding whether to download
           ignore_time: false
           # Ignore file(s) and/or directorie(s)
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+          # exclude: 
           # Disable SSL certificate verification
           disable_ssl_certificate_verification: true
           # Optional raw string of flags for lftp eg. --no-empty-dirs
