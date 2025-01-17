@@ -118,6 +118,7 @@ function InscrireUtilisateur() {
     fetch(apiUrl+"registration", requestOptions)
     .then(response => {
         if(response.ok){
+            alert("Bravo "+prenom+" , vous êtes maintenant inscrit, vous pouvez vous connecter.");
             return response.json();
         }
         else{
@@ -125,7 +126,6 @@ function InscrireUtilisateur() {
         }
     })
     .then(result => {
-        alert("Bravo "+prenom+" , vous êtes maintenant inscrit, vous pouvez vous connecter.");
         document.location.href="/connexion";
     })
     .catch(error => {

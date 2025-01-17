@@ -17,14 +17,14 @@ function setCookie(name,value,days) {
 //Récupérer la valeur d'un cookie à partir de son nom
 function getCookie(name) {
     //Cette ligne ajoute un signe = au nom du cookie. Par exemple, si le nom du cookie est "user", alors nameEQ devient "user="
-    var nameEQ = name + "=";
+    let nameEQ = name + "=";
     /*document.cookie retourne tous les cookies sous forme d'une chaîne unique, où chaque cookie est séparé par un point-virgule ;
     Cette ligne divise cette chaîne en un tableau (ca) où chaque élément est un cookie.
     */
-    var ca = document.cookie.split(';');
+    let ca = document.cookie.split(';');
     //La boucle for parcourt chaque cookie dans le tableau ca.
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
+    for(let i=0;i < ca.length;i++) {
+        let c = ca[i];
         /*Certains cookies peuvent avoir des espaces en début de chaîne.
         Cette boucle while supprime les espaces en début de la chaîne pour assurer une correspondance correcte.*/
         while (c.charAt(0)==' ') c = c.substring(1,c.length);

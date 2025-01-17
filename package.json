@@ -1,7 +1,7 @@
 {
   "name": "quai-antique-front",
   "version": "1.0.0",
-  "description": "Ce site est un site vitrine pour lae restaurant Quai Antique",
+  "description": "Ce site est un site vitrine pour le restaurant Quai Antique",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
