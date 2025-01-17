@@ -1,0 +1,44 @@
+name: Simple FTP deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: FTP Deploy
+        uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+        with:
+          # FTP host
+          ftp_host: ftp-quaiantiquespaacetree.alwaysdata.net
+          # FTP username
+          ftp_username: quaiantiquespaacetree
+          # FTP password
+          ftp_password: ${{ secrets.ftp_password }}
+          # The local folder to copy
+          local_source_dir: ./
+          # The remote folder
+          dist_target_dir: /www/
+          # Delete files not present in the local folder on the remote folder
+          delete: true
+          # Download only newer files
+          only_newer: true
+          # Ignore time when deciding whether to download
+          ignore_time: false
+          # Ignore file(s) and/or directorie(s)
+          # exclude: 
+          # Disable SSL certificate verification
+          disable_ssl_certificate_verification: true
+          # Optional raw string of flags for lftp eg. --no-empty-dirs
+          other_flags: --no-empty-dirs
+
+          
+
+
+          
