@@ -1,10 +1,9 @@
 name: Deploy to AlwaysData
 
-# Déclenchement du workflow
 on:
   push:
     branches:
-      - main  # Exécute le workflow uniquement sur la branche `main`
+      - main
 
 jobs:
   deploy:
@@ -20,13 +19,16 @@ jobs:
           username: quaiantiquespaacetree
           password: ${{ secrets.ftp_password }}
           protocol: ftps
-          local-dir: ./
-          server-dir: /www/
+          port: 21
+          local-dir: ./  # Répertoire local
+          server-dir: /www/  # Répertoire distant
+          security: strict  # Forcer des connexions TLS sécurisées
+          passive: false    # Test avec le mode actif si nécessaire
           exclude: |
             **/.git*
             **/.git*/**
-            **/node_modules/bootstrap/scss/**
-            **/node_modules/bootstrap/js/**
-          log-level: standard
+            **/node_modules/**
+          log-level: verbose
+
 
           
