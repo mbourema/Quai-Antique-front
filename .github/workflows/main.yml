@@ -19,7 +19,7 @@ jobs:
           server: ftp-quaiantiquespaacetree.alwaysdata.net
           username: quaiantiquespaacetree
           password: ${{ secrets.ftp_password }}
-          protocol: ftp
+          protocol: ftps
           local-dir: ./
           server-dir: /www/
           exclude: |
