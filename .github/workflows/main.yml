@@ -20,8 +20,8 @@ jobs:
           username: quaiantiquespaacetree
           password: ${{ secrets.ftp_password }}
           protocol: ftp
-          local-dir: # Exemple : dossier local à envoyer
-          server-dir: /www/ # Chemin distant
+          local-dir: ./
+          server-dir: /www/
           exclude: |
             **/.git*
             **/.git*/**
