@@ -1,7 +1,7 @@
 const tokenCookieName = "accesstoken";
 const signOutBtn = document.getElementById("SignoutBtn");
 const roleCookieName = "role";
-const apiUrl = "http://127.0.0.1:8000/api/";
+const apiUrl = "https://127.0.0.1:8000/api/";
 
 // Créer un cookie à aprtir de son nom, de sa valeur et de sa durée d'expiration en jours
 function setCookie(name,value,days) {
