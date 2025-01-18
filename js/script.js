@@ -1,9 +1,9 @@
 const tokenCookieName = "accesstoken";
 const signOutBtn = document.getElementById("SignoutBtn");
 const roleCookieName = "role";
-const apiUrl = "https://127.0.0.1:8000/api/";
+const apiUrl = "http://127.0.0.1:8000/api/";
 
-// Créer un cookie à aprtir de son nom, de sa valeur et de sa durée d'expiration en jours
+// Créer un cookie à partir de son nom, de sa valeur et de sa durée d'expiration en jours
 function setCookie(name,value,days) {
     var expires = "";
     if (days) {
@@ -134,7 +134,7 @@ function sanitizeHtml(text){
 }
 
 //Fonction pour récupérer les informations de l'utilisateur
-function getInfoUser(){
+function getInfoUser() {
     let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
     let requestOptions = {
@@ -142,17 +142,17 @@ function getInfoUser(){
         headers: myHeaders,
         redirect: 'follow'
     };
-    fetch(apiUrl+"account/me", requestOptions)
-    .then(response => {
-        if(response.ok){
-            return response.json();
-        }
-        else{
-            console.log("Impossible de récupérer les informations utilisateurs");
-        }
-    })
-    .then(result => {
-        return result;
-    })
-    .catch(error => console.log('erreur lors de la récupération des données utilisateurs', error));
+
+    return fetch(apiUrl + "account/me", requestOptions)
+        .then(response => {
+            if (response.ok) {
+                return response.json(); // Retourne les données JSON si la réponse est valide
+            } else {
+                throw new Error("Impossible de récupérer les informations utilisateurs");
+            }
+        })
+        .catch(error => {
+            console.log('Erreur lors de la récupération des données utilisateurs', error);
+            throw error; // Re-propage l'erreur pour permettre une gestion en amont
+        });
 }

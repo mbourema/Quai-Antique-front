@@ -72,6 +72,10 @@ const routeEvent = (event) => {
   /* Elle empêche l'action par défaut associée à l'événement. Pour un lien <a>, cela signifie empêcher la navigation automatique vers l'URL spécifiée dans href.
   L'objectif est de gérer manuellement la navigation (par exemple, via JavaScript) au lieu de laisser le navigateur charger une nouvelle page.*/ 
   event.preventDefault();
+  /* event.target.href doit contenir l'attribut href de l'élément HTML. Cependant, si le clic provient d'un élément enfant, comme une <span> ou une <img> à
+  l'intérieur d'un lien <a>, event.target ne correspondra pas forcément à l'élément <a>. On peut donc Utiliser event.currentTarget à la place ou parcourir
+  l'arbre DOM jusqu'à l'élément <a>.*/
+  const anchor = event.currentTarget.href || event.target.closest('a');
   /* Utilisation de l'API history.pushState pour ajouter une nouvelle entrée dans l'historique du navigateur. 
   history.pushState(state, title, url); state est une donnée arbitraire qu'on peut associer à l'entrée d'historique.
   Lorsque l'utilisateur navigue dans l'historique (en cliquant sur les boutons "Précédent" ou "Suivant"), l'objet state associé à l'entrée est disponible via l'événement popstate.
@@ -79,14 +83,15 @@ const routeEvent = (event) => {
   ou qu'on utilise history.pushState pour ajouter une URL.). 
   Elle apparaît dans la barre d'adresse du navigateur sans provoquer de rechargement de la page.
   Dans cet exemple, event.target.href est l'attribut href de l'élément HTML sur lequel l'utilisateur a cliqué.*/
-  window.history.pushState({}, "", event.target.href);
+  if (!anchor || !anchor.href) return; // Sort si aucun lien valide n'est trouvé
+  window.history.pushState({}, "", anchor.href);
   // Chargement du contenu de la nouvelle page
   LoadContentPage();
 };
 
-// Gestion de l'événement de retour en arrière dans l'historique du navigateur
+// Cette partie garantit que si l'utilisateur utilise les boutons "Précédent" ou "Suivant" du navigateur, le contenu de la page sera rechargé dynamiquement.
 window.onpopstate = LoadContentPage;
-// Assignation de la fonction routeEvent à la propriété route de la fenêtre
+// Cette ligne associe la fonction routeEvent à la propriété route de l'objet window, ce qui permet de l'appeler depuis d'autres parties du code
 window.route = routeEvent;
-// Chargement du contenu de la page au chargement initial
+// Cela garantit que le contenu approprié est chargé lors du chargement initial de la page.
 LoadContentPage();
